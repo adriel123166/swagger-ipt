@@ -1,12 +1,13 @@
-dotenv.config();
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+dotenv.config();
 const bcrypt = require('bcryptjs');
 const connectDB = require('./config/db');
 const User = require('./models/User');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
+const mongoose = require('mongoose');
 
 const app = express();
 
