@@ -1,23 +1,11 @@
 const express = require("express");
-const router = express.Router(); // ← must be first
+const router = express.Router();
 
 const halls = [
   { id: "1", name: "Events Hall", capacity: 500, location: "Main Building" },
   { id: "2", name: "MPH", capacity: 50, location: "PSB" },
   { id: "3", name: "Audio Visual Room", capacity: 80, location: "SOM" },
 ];
-
-// View halls
-router.get("/", (req, res) => {
-  res.json(halls);
-});
-
-// Create hall
-router.post("/", (req, res) => {
-  res.json({ message: "Create hall" });
-});
-
-module.exports = router;
 
 /**
  * @swagger
@@ -88,3 +76,15 @@ module.exports = router;
  *       200:
  *         description: Hall deleted
  */
+
+// View halls
+router.get("/", (req, res) => {
+  res.json(halls);
+});
+
+// Create hall
+router.post("/", (req, res) => {
+  res.json({ message: "Create hall" });
+});
+
+module.exports = router; // ← always last
