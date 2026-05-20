@@ -37,6 +37,16 @@ router.put('/:id/reject', protect, requireRole('Admin'), async (req, res) => upd
 
 module.exports = router;
 
+// Get all approvals
+router.get('/', protect, requireRole('Admin'), async (req, res) => {
+  try {
+    const reservations = await Reservation.find({ status: { $in: ['Pending', 'Approved', 'Rejected'] } });
+    res.json(reservations);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to fetch approvals.' });
+  }
+});
+
 // approvalRoutes.js
 /**
  * @swagger
