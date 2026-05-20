@@ -1,9 +1,20 @@
+const express = require("express");
+const router = express.Router(); // ← must be first
+
 const halls = [
-  { id: "1", name: "Events Hall Main", capacity: 500, location: "Main Building" },
-  { id: "2", name: "Multi-Purpose Hall", capacity: 50, location: "PSB" },
-  { id: "3", name: "Audio Visual Room", capacity: 80, location: "SOM" },
+  { id: "1", name: "Events Hall Main", capacity: 500, location: "Building A, Ground Floor" },
+  { id: "2", name: "Conference Room 1", capacity: 50, location: "Building B, 2nd Floor" },
+  { id: "3", name: "Audio Visual Room", capacity: 80, location: "Building C, 3rd Floor" },
 ];
 
+// View halls
+router.get("/", (req, res) => {
+  res.json(halls);
+});
+
+// rest of your routes...
+
+module.exports = router;
 // View halls
 router.get("/", (req, res) => {
   res.json(halls);
