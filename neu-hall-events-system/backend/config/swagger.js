@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
       { url: 'http://localhost:5000', description: 'Local server' },
-      { url: 'https://swagger-ipt-production.up.railway.app', description: 'Production' },
+     { url: 'https://neu-hall-events-backend.onrender.com', description: 'Production' },
     ],
     components: {
       securitySchemes: {
