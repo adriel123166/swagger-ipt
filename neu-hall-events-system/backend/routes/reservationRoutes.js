@@ -9,16 +9,6 @@ const {
   updateReservation,
 } = require('../controllers/reservationController');
 
-router.post('/',     protect, validateReservation, createReservation);
-
-router.get('/',      protect, getReservations);
-
-router.put('/:id',   protect, validateReservation, updateReservation);
-
-router.delete('/:id', protect, deleteReservation);
-
-module.exports = router;
-
 /**
  * @swagger
  * /api/reservations:
@@ -37,38 +27,43 @@ module.exports = router;
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - eventName
+ *               - hall
+ *               - date
+ *               - startTime
+ *               - endTime
+ *               - attendees
+ *               - organization
  *             properties:
- *               hallId:
+ *               eventName:
  *                 type: string
- *               eventId:
+ *                 example: NEU Foundation Day
+ *               hall:
  *                 type: string
- *               startDate:
+ *                 example: Events Hall Main
+ *               date:
  *                 type: string
- *                 format: date-time
- *               endDate:
+ *                 example: "2026-05-24"
+ *               startTime:
  *                 type: string
- *                 format: date-time
+ *                 example: "09:00"
+ *               endTime:
+ *                 type: string
+ *                 example: "17:00"
+ *               attendees:
+ *                 type: integer
+ *                 example: 100
+ *               organization:
+ *                 type: string
+ *                 example: NEU Student Council
  *     responses:
  *       201:
  *         description: Reservation created
- *       409:
- *         description: Conflict with existing reservation
+ *       400:
+ *         description: Validation failed
  *
  * /api/reservations/{id}:
- *   get:
- *     summary: Get reservation by ID
- *     tags: [Reservations]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Reservation found
- *       404:
- *         description: Not found
  *   put:
  *     summary: Update a reservation
  *     tags: [Reservations]
@@ -94,3 +89,10 @@ module.exports = router;
  *       200:
  *         description: Reservation deleted
  */
+
+router.post('/',     protect, validateReservation, createReservation);
+router.get('/',      protect, getReservations);
+router.put('/:id',   protect, validateReservation, updateReservation);
+router.delete('/:id', protect, deleteReservation);
+
+module.exports = router;
